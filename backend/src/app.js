@@ -2,7 +2,7 @@ import express from "express";
 import { config } from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import appRouter from "./db/routes/index.js";
+import appRouter from "./routes/index.js";
 
 config();
 const app = express();
