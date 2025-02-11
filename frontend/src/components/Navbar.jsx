@@ -19,7 +19,7 @@ const Navbar = () => {
     const [showDropdown, setShowDropdown] = useState(false);
 
     return (
-        <header className="max-w-screen-2xl px-4 py-6 mx-auto">
+        <header className="max-w-screen-2xl px-4 py-6 mx-auto bg-gray-100">
             <nav className="flex justify-between items-center">
                 <div className="p-2">
                     <Link to="/"><GoHome className="h-6 w-6"/></Link>
