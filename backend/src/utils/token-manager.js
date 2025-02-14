@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { COOKIE_NAME } from './constants';
+import { AUTH_TOKEN } from './constants';
 
 export const createToken = (id, email, expiresIn) => {
     const payload = {
@@ -14,7 +14,7 @@ export const createToken = (id, email, expiresIn) => {
 }
 
 export const verifyToken = async (req, res, next) => {
-    const token = req.signedCookies[COOKIE_NAME];
+    const token = req.signedCookies[AUTH_TOKEN];
     if (!token || token.trim() === '') {
         return res.status(401).json({ message: "No token found"});
     }

@@ -1,9 +1,8 @@
 import { Router } from 'express';
+import userRoutes from "./user-routes.js";
 
 const appRouter = Router();
 
-appRouter.get("/", (req, res) => {
-    res.send("Hello");
-});
+appRouter.use("/user", userRoutes);
 
 export default appRouter;
