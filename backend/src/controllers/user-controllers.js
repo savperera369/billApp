@@ -86,3 +86,28 @@ export const userLogin = async (req, res, next) => {
         return res.status(500).json({ message: "error logging in user." });
     }
 }
+
+export const userLogout = async (req, res, next) => {
+    try {
+        const user = await User.findById(res.locals.jwtData.id);
+        if (!user) {
+            return res.status(401).json({ message: "User not found or token malformed" });
+        }
+
+        if (user._id.toString() !== res.locals.jwtData.id) {
+            return res.status(401).json({ message: "Permissions don't match." });
+        }
+
+        res.clearCookie(AUTH_TOKEN, {
+            httpOnly: true,
+            signed: true,
+            domain: "localhost",
+            path: "/"
+        });
+
+        return res.status(200).json({ message: "Logged out user" });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "error logging out user." });
+    }
+}
